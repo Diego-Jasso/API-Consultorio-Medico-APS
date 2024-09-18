@@ -1,0 +1,6 @@
+@API_Consultorio_Medico_APS_HostAddress = http://localhost:5121
+
+GET {{API_Consultorio_Medico_APS_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
