@@ -1,11 +1,34 @@
+using API_Consultorio_Medico_APS.DataBase;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+         connectionString ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")
+    )
+);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+string corsConfiguration = "_corsConfiguration";
+string url = "https://localhost:4200";
+
+builder.Services.AddCors(options =>
+    options.AddPolicy(name: corsConfiguration,
+        cors => cors.WithOrigins(url)
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+    )
+);
+
 
 var app = builder.Build();
 
