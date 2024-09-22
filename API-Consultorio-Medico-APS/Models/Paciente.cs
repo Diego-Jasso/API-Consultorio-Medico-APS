@@ -5,7 +5,7 @@ namespace API_Consultorio_Medico_APS.Models
     public class Paciente
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;
         public string APaterno { get; set; } = string.Empty;    
         public string AMaterno { get; set; } = string.Empty;

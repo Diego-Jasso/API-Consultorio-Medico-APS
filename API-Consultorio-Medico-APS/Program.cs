@@ -1,4 +1,5 @@
 using API_Consultorio_Medico_APS.DataBase;
+using API_Consultorio_Medico_APS.Mapper;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,9 +18,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(typeof(MapperCode));
 
 string corsConfiguration = "_corsConfiguration";
-string url = "https://localhost:4200";
+string url = "https://localhost:3000";
 
 builder.Services.AddCors(options =>
     options.AddPolicy(name: corsConfiguration,

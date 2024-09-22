@@ -16,8 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Mapper\" />
-    <Folder Include="DTOs\" />
+    <Folder Include="Base\" />
     <Folder Include="Services\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
