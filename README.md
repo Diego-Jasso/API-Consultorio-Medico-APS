@@ -6,35 +6,35 @@ Esta API se conecta directamente a nuestro front creado con React.
 ## API Endpoints
 A continuación se muestran los endpoints del API
 
-###Cita
+### Cita
   GET /api/Cita
   GET /api/Cita/id
   POST /api/Cita
   PUT /api/Cita/id
   DELETE /api/Cita/id
 
-###Consulta
+### Consulta
   GET /api/Consulta
   GET /api/Consulta/id
   POST /api/Consulta
   PUT /api/Consulta/id
   DELETE /api/Consulta/id
 
-###DetalleConsulta
+### DetalleConsulta
   GET /api/DetalleConsulta
   GET /api/DetalleConsulta/id
   POST /api/DetalleConsulta
   PUT /api/DetalleConsulta/id
   DELETE /api/DetalleConsulta/id
   
-###Empleado
+### Empleado
   GET /api/Empleado
   GET /api/Empleado/id
   POST /api/Empleado
   PUT /api/Empleado/id
   DELETE /api/Empleado/id
 
-###Exp_Pad
+### Exp_Pad
   GET /api/Exp_Pad
   GET /api/Exp_Pad/id
   POST /api/Exp_Pad
@@ -48,24 +48,24 @@ A continuación se muestran los endpoints del API
   PUT /api/Expediente/id
   DELETE /api/Expediente/id
 
-###Paciente
+### Paciente
   GET /api/Paciente
   GET /api/Paciente/id
   POST /api/Paciente
   PUT /api/Paciente/id
   DELETE /api/Paciente/id
 
-###Padecimiento
+### Padecimiento
   GET /api/Padecimiento
   GET /api/Padecimiento/id
   POST /api/Padecimiento
   PUT /api/Padecimiento/id
   DELETE /api/Padecimiento/id
 
-##Modelos
+## Modelos
 A continuación se muestran los DTOs en formato JSON de los modelos que se utilizan en cada end point 
 
-###Cita
+### Cita
 {
     "paciente_Id": 0,
     "empleado_Id": 0,
@@ -83,7 +83,7 @@ A continuación se muestran los DTOs en formato JSON de los modelos que se utili
     "error": "string"
 }
   
-###Consulta
+### Consulta
 {
     "cita_Id": 0,
     "procedimiento": "string",
@@ -94,7 +94,7 @@ A continuación se muestran los DTOs en formato JSON de los modelos que se utili
     "error": "string"
 }
 
-###DetalleConsulta
+### DetalleConsulta
 {
     "consulta_Id": 0,
     "padecimiento": "string",
@@ -106,7 +106,7 @@ A continuación se muestran los DTOs en formato JSON de los modelos que se utili
     "error": "string"
 }
   
-###Empleado
+### Empleado
 {
     "tipoEmp": "string",
     "salario": 0,
@@ -123,7 +123,7 @@ A continuación se muestran los DTOs en formato JSON de los modelos que se utili
     "error": "string"
 }
 
-###Exp_Pad
+### Exp_Pad
 {
     "expediente_Id": 0,
     "padecimiento_Id": 0,
@@ -132,7 +132,7 @@ A continuación se muestran los DTOs en formato JSON de los modelos que se utili
     "error": "string"
 }
 
-###Expediente
+### Expediente
 {
     "paciente_Id": 0,
     "altura": 0,
@@ -147,7 +147,7 @@ A continuación se muestran los DTOs en formato JSON de los modelos que se utili
     "error": "string"
 }
   
-###Paciente
+### Paciente
 {
     "nombre": "string",
     "aPaterno": "string",
@@ -163,7 +163,7 @@ A continuación se muestran los DTOs en formato JSON de los modelos que se utili
     "error": "string"
 }
 
-###Padecimiento
+### Padecimiento
 {
     "descripcion": "string",
     "id": 0,
