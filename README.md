@@ -62,7 +62,7 @@ A continuación se muestran los endpoints del API
   PUT /api/Padecimiento/id
   DELETE /api/Padecimiento/id
 
-#Modelos
+##Modelos
 A continuación se muestran los DTOs en formato JSON de los modelos que se utilizan en cada end point 
 
 ##Cita
