@@ -16,7 +16,7 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
                    select new DetalleConsultaDTO
                    {
                        Id = dc.Id,
-                       Consulta_Id = dc.Consulta_Id,
+                       Consulta_Id = dc.Consulta_ID,
                        Padecimiento = dc.Padecimiento,
                        Tratamiento = dc.Tratamiento,
                        Duracion = dc.Duracion,

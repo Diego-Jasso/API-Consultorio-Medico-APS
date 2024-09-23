@@ -15,7 +15,7 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
             return from e in query
                    select new EmpleadoDTO
                    {
-                       Id = e.Id,
+                       ID = e.ID,
                        TipoEmp = e.TipoEmp,
                        Salario = e.Salario,
                        Nombre = e.Nombre,

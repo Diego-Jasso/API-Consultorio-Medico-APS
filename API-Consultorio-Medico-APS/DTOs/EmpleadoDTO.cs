@@ -15,7 +15,7 @@
     }
     public class EmpleadoDTO: EmpleadoNewDTO
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public bool Success { get; set; } = true;
         public string Error { get; set; } = string.Empty;
         public static EmpleadoDTO ToError(string error)
