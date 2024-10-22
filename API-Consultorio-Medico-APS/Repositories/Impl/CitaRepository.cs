@@ -11,7 +11,7 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
         private readonly AppDbContext _context = context;
         public IEnumerable<CitaDTO> ConsultarDTO()
         {
-            IEnumerable<Cita> query = _context.Cita.Include(c => c.Empleado).Include(c => c.Paciente).ToList();
+            IEnumerable<Cita> query = _context.Cita.Include(c => c.Empleado).Include(c => c.Paciente).Where(c => c.Status == true).ToList();
             return from c in query
                    select new CitaDTO
                    {
@@ -25,6 +25,8 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
                        APaternoEmpleado = c.Empleado.APaterno,
                        AMaternoEmpleado = c.Empleado.AMaterno,
                        Fecha = c.Fecha,
+                       Hora = c.Hora,
+                       Status = c.Status,
                        TipoCita = c.TipoCita,
                        Asistencia = c.Asistencia
                    };

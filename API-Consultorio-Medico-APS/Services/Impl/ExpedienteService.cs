@@ -21,6 +21,11 @@ namespace API_Consultorio_Medico_APS.Services.Impl
             Expediente Expediente = _repository.ConsultarPorId(id);
             return _mapper.Map<ExpedienteDTO>(Expediente);
         }
+        public ExpedienteDTO ConsultarPorPacienteId(int id)
+        {
+            Expediente Expediente = _repository.ConsultarPorPacienteId(id);
+            return _mapper.Map<ExpedienteDTO>(Expediente);
+        }
         public ExpedienteDTO Agregar(ExpedienteNewDTO dto)
         {
             Expediente Expediente = _mapper.Map<Expediente>(dto);

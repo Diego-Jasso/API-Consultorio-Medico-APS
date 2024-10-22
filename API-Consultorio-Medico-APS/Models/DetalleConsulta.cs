@@ -9,8 +9,8 @@ namespace API_Consultorio_Medico_APS.Models
         public int Id { get; set; }
         public int Consulta_ID { get; set; }
         public string Padecimiento { get; set; } = string.Empty;
-        public string Tratamiento { get; set; } = string.Empty;   
-        public TimeOnly Duracion { get; set; }
+        public string Tratamiento { get; set; } = string.Empty;
+        public string Duracion { get; set; } = string.Empty;
         public string Comentarios { get; set; } = string.Empty;
 
         [ForeignKey("Consulta_ID")]

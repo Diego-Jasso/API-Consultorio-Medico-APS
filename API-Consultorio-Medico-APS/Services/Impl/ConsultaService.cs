@@ -6,9 +6,11 @@ using FluentValidation.Results;
 
 namespace API_Consultorio_Medico_APS.Services.Impl
 {
-    public class ConsultaService(IConsultaRepository repository, IMapper mapper) : IConsultaService
+    public class ConsultaService(IConsultaRepository repository,ICitaRepository citaRepository,ICitaService service, IMapper mapper) : IConsultaService
     {
         private readonly IConsultaRepository _repository = repository;
+        private readonly ICitaRepository _citaRepository = citaRepository;
+        private readonly ICitaService _service = service;
         private readonly IMapper _mapper = mapper;
 
         public List<ConsultaDTO> ConsultarDTO()
@@ -29,6 +31,9 @@ namespace API_Consultorio_Medico_APS.Services.Impl
             if (result.IsValid)
             {
                 _repository.Agregar(Consulta);
+                Cita cita = _citaRepository.ConsultarPorId(Consulta.Cita_Id);
+                cita.Status = false;
+                _citaRepository.Editar(cita);
                 return _mapper.Map<ConsultaDTO>(Consulta);
             }
             else

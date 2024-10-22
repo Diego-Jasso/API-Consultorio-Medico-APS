@@ -5,5 +5,6 @@ namespace API_Consultorio_Medico_APS.Services
 {
     public interface IExpedienteService:IBaseService<ExpedienteDTO,ExpedienteNewDTO>
     {
+        ExpedienteDTO ConsultarPorPacienteId(int id);
     }
 }

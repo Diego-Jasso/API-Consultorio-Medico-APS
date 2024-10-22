@@ -49,7 +49,7 @@ builder.Services.AddAutoMapper(typeof(MapperCode));
 
 //Add cors configuration
 string corsConfiguration = "_corsConfiguration";
-string url = "https://localhost:3000";
+string url = "http://localhost:3000";
 
 builder.Services.AddCors(options =>
     options.AddPolicy(name: corsConfiguration,

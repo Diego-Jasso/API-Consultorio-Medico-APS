@@ -8,5 +8,6 @@ namespace API_Consultorio_Medico_APS.Repositories
     {
         IEnumerable<ExpedienteDTO> ConsultarDTO();
         Expediente ConsultarPorId(int id);
+        Expediente ConsultarPorPacienteId(int id);
     }
 }

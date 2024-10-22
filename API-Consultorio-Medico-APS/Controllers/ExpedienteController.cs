@@ -21,6 +21,13 @@ namespace API_Consultorio_Medico_APS.Controllers
             return service.ConsultarPorId(id);
         }
 
+        [HttpGet("Paciente/{id}")]
+
+        public ActionResult<ExpedienteDTO> ConsultarPorPacienteId(int id)
+        {
+            return service.ConsultarPorPacienteId(id);
+        }
+
         [HttpPost]
 
         public ActionResult<ExpedienteDTO> Agregar(ExpedienteNewDTO dto)

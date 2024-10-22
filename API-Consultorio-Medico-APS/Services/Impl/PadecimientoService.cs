@@ -21,6 +21,12 @@ namespace API_Consultorio_Medico_APS.Services.Impl
             Padecimiento Padecimiento = _repository.ConsultarPorId(id);
             return _mapper.Map<PadecimientoDTO>(Padecimiento);
         }
+
+        public PadecimientoDTO ConsultarPorNombre(string nombre)
+        {
+            Padecimiento Padecimiento = _repository.ConsultarPorNombre(nombre);
+            return _mapper.Map<PadecimientoDTO>(Padecimiento);
+        }
         public PadecimientoDTO Agregar(PadecimientoNewDTO dto)
         {
             Padecimiento Padecimiento = _mapper.Map<Padecimiento>(dto);

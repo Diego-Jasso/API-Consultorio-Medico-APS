@@ -23,5 +23,10 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
         {
             return _context.Padecimiento.Find(id);
         }
+
+        public Padecimiento ConsultarPorNombre(string nombre)
+        {
+            return _context.Padecimiento.Where(p => p.Descripcion.Trim().Equals(nombre.Trim())).FirstOrDefault();
+        }
     }
 }

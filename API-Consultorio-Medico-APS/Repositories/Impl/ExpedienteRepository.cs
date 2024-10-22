@@ -23,13 +23,18 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
                        Altura = e.Altura,
                        Peso = e.Peso,
                        Alergias = e.Alergias,
-                       Estudios = e.Estudios
+                       Genero = e.Genero
                    };
         }
 
         public Expediente ConsultarPorId(int id)
         {
             return _context.Expediente.Find(id);
+        }
+
+        public Expediente ConsultarPorPacienteId(int id)
+        {
+            return _context.Expediente.Where(e => e.Paciente_Id == id).FirstOrDefault();
         }
     }
 }

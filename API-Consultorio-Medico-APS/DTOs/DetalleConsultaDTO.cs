@@ -5,7 +5,7 @@
         public int Consulta_Id { get; set; }
         public string Padecimiento { get; set; } = string.Empty;
         public string Tratamiento { get; set; } = string.Empty;
-        public TimeOnly Duracion { get; set; }
+        public string Duracion { get; set; } = string.Empty;
         public string Comentarios { get; set; } = string.Empty;
     }
     public class DetalleConsultaDTO:DetalleConsultaNewDTO

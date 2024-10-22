@@ -28,5 +28,10 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
         {
             return _context.DetalleConsulta.Find(id);
         }
+
+        public Cita ConsultarCitaDesdeDetalle(int id)
+        {
+            return _context.DetalleConsulta.Include(dc => dc.Consulta.Cita).FirstOrDefault().Consulta.Cita;
+        }
     }
 }

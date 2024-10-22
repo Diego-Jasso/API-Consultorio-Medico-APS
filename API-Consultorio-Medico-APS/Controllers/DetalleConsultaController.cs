@@ -1,11 +1,12 @@
 ﻿using API_Consultorio_Medico_APS.Base.Impl;
 using API_Consultorio_Medico_APS.DTOs;
 using API_Consultorio_Medico_APS.Services;
+using API_Consultorio_Medico_APS.Services.Impl;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_Consultorio_Medico_APS.Controllers
 {
-    public class DetalleConsultaController(IDetalleConsultaService service) : BaseApiController
+    public class DetalleConsultaController(IDetalleConsultaService service,IPadecimientoService padecimientoService) : BaseApiController
     {
         [HttpGet]
 

@@ -6,9 +6,12 @@ using FluentValidation.Results;
 
 namespace API_Consultorio_Medico_APS.Services.Impl
 {
-    public class DetalleConsultaService(IDetalleConsultaRepository repository, IMapper mapper) : IDetalleConsultaService
+    public class DetalleConsultaService(IDetalleConsultaRepository repository,IPadecimientoService service,IExpedienteService expedienteService,IExp_PadService expPadService,IMapper mapper) : IDetalleConsultaService
     {
         private readonly IDetalleConsultaRepository _repository = repository;
+        private readonly IPadecimientoService _service = service;
+        private readonly IExpedienteService _expedienteService = expedienteService;
+        private readonly IExp_PadService _expPadService = expPadService;
         private readonly IMapper _mapper = mapper;
 
         public List<DetalleConsultaDTO> ConsultarDTO()
@@ -28,7 +31,37 @@ namespace API_Consultorio_Medico_APS.Services.Impl
             ValidationResult result = validator.Validate(DetalleConsulta);
             if (result.IsValid)
             {
+                int idPad;
+                int idExp;
                 _repository.Agregar(DetalleConsulta);
+                PadecimientoDTO Padecimiento = _service.ConsultarPorNombre(dto.Padecimiento);
+                if (Padecimiento == null)
+                {
+                    PadecimientoNewDTO pad = new();
+                    pad.Descripcion = dto.Padecimiento;
+                    var resultPadecimiento = _service.Agregar(pad);
+                    if (!resultPadecimiento.Success)
+                        return DetalleConsultaDTO.ToError("Eror al intentar crear el padecimiento.");
+                    idPad = resultPadecimiento.Id;
+                }
+                else
+                    idPad = Padecimiento.Id;
+                Cita Cita = _repository.ConsultarCitaDesdeDetalle(DetalleConsulta.Id);
+                ExpedienteDTO expediente = _expedienteService.ConsultarPorPacienteId(Cita.Paciente_Id);
+                if (expediente == null)
+                {
+                    ExpedienteNewDTO exp = new();
+                    exp.Paciente_Id = Cita.Paciente_Id;
+                    var resultExpediente = _expedienteService.Agregar(exp);
+                    if (!resultExpediente.Success)
+                        return DetalleConsultaDTO.ToError("Eror al intentar crear el expediente.");
+                    idExp = resultExpediente.Id;
+                } else
+                    idExp = expediente.Id;
+                Exp_PadNewDTO exp_Pad = new();
+                exp_Pad.Expediente_Id = idExp;
+                exp_Pad.Padecimiento_Id = idPad;
+                _expPadService.Agregar(exp_Pad);
                 return _mapper.Map<DetalleConsultaDTO>(DetalleConsulta);
             }
             else

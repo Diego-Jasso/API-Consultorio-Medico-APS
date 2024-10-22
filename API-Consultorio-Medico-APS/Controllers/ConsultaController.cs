@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API_Consultorio_Medico_APS.Controllers
 {
-    public class ConsultaController(IConsultaService service) : BaseApiController
+    public class ConsultaController(IConsultaService service,IDetalleConsultaService detalleConsultaService) : BaseApiController
     {
         [HttpGet]
 
@@ -28,6 +28,24 @@ namespace API_Consultorio_Medico_APS.Controllers
             var result = service.Agregar(dto);
             if (result.Success)
                 return Ok();
+            else
+                return BadRequest(result.Error);
+        }
+
+        [HttpPost("ConsultaYDetalle")]
+
+        public ActionResult<ConsultaDTO> AgregarConDetalle(ConsultaConDetalleDTO dto)
+        {
+            var result = service.Agregar(dto.Consulta);
+            if (result.Success)
+            {
+                foreach (DetalleConsultaNewDTO detCon in dto.Detalles)
+                {
+                    detCon.Consulta_Id = result.Id;
+                    detalleConsultaService.Agregar(detCon);
+                }
+                return Ok();
+            }
             else
                 return BadRequest(result.Error);
         }
