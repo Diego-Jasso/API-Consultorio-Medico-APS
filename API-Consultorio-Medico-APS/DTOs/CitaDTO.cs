@@ -6,7 +6,8 @@
         public int Empleado_Id { get; set; }
         public DateOnly Fecha { get; set; }
         public TimeOnly Hora { get; set; }
-        public string TipoCita { get; set; } = string.Empty;
+        public string TipoCitaDescripcion { get; set; } = string.Empty;
+        public int TipoCita { get; set; }
         public string Asistencia { get; set; } = string.Empty;
         public bool Status { get; set; }
     }

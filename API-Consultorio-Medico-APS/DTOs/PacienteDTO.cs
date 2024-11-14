@@ -11,6 +11,7 @@
         public DateOnly FechaNac { get; set; }
         public string Usuario { get; set; } = string.Empty;
         public string Contraseña { get; set; } = string.Empty;
+        public bool Status { get; set; }
     }
     public class PacienteDTO: PacienteNewDTO
     {

@@ -11,7 +11,7 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
         private readonly AppDbContext _context = context;
         public IEnumerable<EmpleadoDTO> ConsultarDTO()
         {
-            IEnumerable<Empleado> query = _context.Empleado.ToList();
+            IEnumerable<Empleado> query = _context.Empleado.Where(e => e.Status == true).ToList();
             return from e in query
                    select new EmpleadoDTO
                    {
@@ -25,8 +25,24 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
                        RFC = e.RFC,
                        NumSeguro = e.NumSeguro,
                        Usuario = e.Usuario,
-                       Contraseña = e.Contraseña
+                       Contraseña = e.Contraseña,
+                       Status = e.Status
                    };
+        }
+
+        public IEnumerable<TimeOnly> ConsultarHorario(int id,DateOnly date)
+        {
+            TimeOnly time = new TimeOnly(8, 0, 0);
+            List<TimeOnly> horarios = new List<TimeOnly>();
+            for (int i = 1; i <= 12; i++)
+            {
+                TimeOnly auxTime = time.AddHours(i);
+                Cita cita = _context.Cita.Where(c => c.Empleado_Id == id && c.Fecha.Equals(date) && c.Hora.Equals(auxTime)).FirstOrDefault();
+                if (cita == null) {
+                    horarios.Add(auxTime);
+                }
+            }
+            return horarios.ToList();
         }
 
         public Empleado ConsultarPorId(int id)

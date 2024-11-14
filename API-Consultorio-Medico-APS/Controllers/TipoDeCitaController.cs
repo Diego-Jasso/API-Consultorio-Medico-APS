@@ -5,31 +5,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API_Consultorio_Medico_APS.Controllers
 {
-    public class EmpleadoController(IEmpleadoService service) : BaseApiController
+    public class TipoDeCitaController(ITipoDeCitaService service):BaseApiController
     {
         [HttpGet]
 
-        public ActionResult<List<EmpleadoDTO>> ConsultarDTO()
+        public ActionResult<List<TipoDeCitaDTO>> ConsultarDTO()
         {
             return service.ConsultarDTO();
         }
 
         [HttpGet("{id}")]
 
-        public ActionResult<EmpleadoDTO> ConsultarPorId(int id)
+        public ActionResult<TipoDeCitaDTO> ConsultarPorId(int id)
         {
             return service.ConsultarPorId(id);
         }
 
-        [HttpGet("{id}/{fecha}")]
-        public ActionResult<List<TimeOnly>> ConsultarHorario(int id, DateOnly fecha)
-        {
-            return service.ConsultarHorario(id, fecha);
-        }
-
         [HttpPost]
 
-        public ActionResult<EmpleadoDTO> Agregar(EmpleadoNewDTO dto)
+        public ActionResult<TipoDeCitaDTO> Agregar(TipoDeCitaNewDTO dto)
         {
             var result = service.Agregar(dto);
             if (result.Success)
@@ -40,7 +34,7 @@ namespace API_Consultorio_Medico_APS.Controllers
 
         [HttpPut("{id}")]
 
-        public ActionResult<EmpleadoDTO> Editar(EmpleadoDTO dto)
+        public ActionResult<TipoDeCitaDTO> Editar(TipoDeCitaDTO dto)
         {
             var result = service.Editar(dto);
             if (result.Success)
@@ -49,19 +43,8 @@ namespace API_Consultorio_Medico_APS.Controllers
                 return BadRequest(result.Error);
         }
 
-        [HttpPut("Baja/{id}")]
-
-        public ActionResult<EmpleadoDTO> DarDeBaja(int id)
-        {
-            var result = service.DarDeBaja(id);
-            if (result.Success)
-                return Ok();
-            else
-                return BadRequest(result.Error);
-        }
-
         [HttpDelete("{id}")]
-        public ActionResult<EmpleadoDTO> Eliminar(int id)
+        public ActionResult<TipoDeCitaDTO> Eliminar(int id)
         {
             var result = service.Eliminar(id);
             if (result.Success)

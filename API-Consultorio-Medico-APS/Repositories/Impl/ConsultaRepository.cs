@@ -17,7 +17,6 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
                    {
                        Id = c.Id,
                        Cita_Id = c.Cita_Id,
-                       Procedimiento = c.Procedimiento,
                        Costo = c.Costo,
                        Comentarios = c.Comentarios
                    };

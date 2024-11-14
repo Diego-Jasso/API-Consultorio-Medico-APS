@@ -13,6 +13,7 @@ namespace API_Consultorio_Medico_APS.DataBase
         public DbSet<Cita> Cita { get; set; } = default!;
         public DbSet<Consulta> Consulta { get; set; } = default!;
         public DbSet<DetalleConsulta> DetalleConsulta { get; set; } = default!;
+        public DbSet<TipoDeCita> TipoDeCita { get; set; } = default!;
 
     }
 }

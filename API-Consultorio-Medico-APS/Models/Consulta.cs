@@ -8,7 +8,6 @@ namespace API_Consultorio_Medico_APS.Models
         [Key]
         public int Id { get; set; }
         public int Cita_Id { get; set; }
-        public string Procedimiento { get; set; } = string.Empty;
         public double Costo { get; set; }
         public string Comentarios {  get; set; } = string.Empty;
 

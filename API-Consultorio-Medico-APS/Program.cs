@@ -35,6 +35,8 @@ builder.Services.AddScoped<IExp_PadService,Exp_PadService>();
 builder.Services.AddScoped<IExpedienteService,ExpedienteService>();
 builder.Services.AddScoped<IPacienteService,PacienteService>();
 builder.Services.AddScoped<IPadecimientoService,PadecimientoService>();
+builder.Services.AddScoped<ITipoDeCitaRepository,TipoDeCitaRepository>();
+builder.Services.AddScoped<ITipoDeCitaService,TipoDeCitaService>();
 
 //Add controllers.
 builder.Services.AddControllers();

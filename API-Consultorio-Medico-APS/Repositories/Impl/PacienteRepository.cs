@@ -12,7 +12,7 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
         private readonly AppDbContext _context = context;
         public IEnumerable<PacienteDTO> ConsultarDTO()
         {
-            IEnumerable<Paciente> query = _context.Paciente.ToList();
+            IEnumerable<Paciente> query = _context.Paciente.Where(p => p.Status == true).ToList();
             return from p in query
                    select new PacienteDTO
                    {
@@ -25,7 +25,8 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
                        HistorialMed = p.HistorialMed,
                        FechaNac = p.FechaNac,
                        Usuario = p.Usuario,
-                       Contraseña = p.Contraseña
+                       Contraseña = p.Contraseña,
+                       Status = p.Status
                    };
         }
 

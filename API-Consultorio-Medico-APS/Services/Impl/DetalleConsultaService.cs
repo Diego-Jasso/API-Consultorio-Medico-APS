@@ -41,7 +41,7 @@ namespace API_Consultorio_Medico_APS.Services.Impl
                     pad.Descripcion = dto.Padecimiento;
                     var resultPadecimiento = _service.Agregar(pad);
                     if (!resultPadecimiento.Success)
-                        return DetalleConsultaDTO.ToError("Eror al intentar crear el padecimiento.");
+                        return DetalleConsultaDTO.ToError("Eror al intentar crear el Padecimiento.");
                     idPad = resultPadecimiento.Id;
                 }
                 else

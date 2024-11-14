@@ -23,6 +23,8 @@ namespace API_Consultorio_Medico_APS.Mapper
             CreateMap<ExpedienteDTO,Expediente>().ReverseMap();
             CreateMap<PadecimientoNewDTO,Padecimiento>();
             CreateMap<PadecimientoDTO,Padecimiento>().ReverseMap();
+            CreateMap<TipoDeCitaNewDTO, TipoDeCita>();
+            CreateMap<TipoDeCitaDTO, TipoDeCita>().ReverseMap(); 
         }
     }
 }

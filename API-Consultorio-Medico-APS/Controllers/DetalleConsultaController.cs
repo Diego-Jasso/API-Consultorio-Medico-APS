@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API_Consultorio_Medico_APS.Controllers
 {
-    public class DetalleConsultaController(IDetalleConsultaService service,IPadecimientoService padecimientoService) : BaseApiController
+    public class DetalleConsultaController(IDetalleConsultaService service,IPadecimientoService PadecimientoService) : BaseApiController
     {
         [HttpGet]
 

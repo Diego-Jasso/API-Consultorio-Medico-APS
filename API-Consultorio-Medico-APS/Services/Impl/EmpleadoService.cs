@@ -21,6 +21,12 @@ namespace API_Consultorio_Medico_APS.Services.Impl
             Empleado Empleado = _repository.ConsultarPorId(id);
             return _mapper.Map<EmpleadoDTO>(Empleado);
         }
+
+        public List<TimeOnly> ConsultarHorario(int id, DateOnly date)
+        {
+            return _repository.ConsultarHorario(id,date).ToList();
+        }
+
         public EmpleadoDTO Agregar(EmpleadoNewDTO dto)
         {
             Empleado Empleado = _mapper.Map<Empleado>(dto);
@@ -47,6 +53,24 @@ namespace API_Consultorio_Medico_APS.Services.Impl
             {
                 _repository.Editar(Empleado);
                 return _mapper.Map<EmpleadoDTO>(Empleado);
+            }
+            else
+            {
+                return EmpleadoDTO.ToError(
+                    result.ToString(", "));
+            }
+        }
+
+        public EmpleadoDTO DarDeBaja(int id)
+        {
+            Empleado empleado = _repository.ConsultarPorId(id);
+            empleado.Status = false;
+            EmpleadoValidatorService validator = new();
+            ValidationResult result = validator.Validate(empleado);
+            if (result.IsValid)
+            {
+                _repository.Editar(empleado);
+                return _mapper.Map<EmpleadoDTO>(empleado);
             }
             else
             {
