@@ -1,7 +1,7 @@
 ﻿using API_Consultorio_Medico_APS.DataBase;
-using API_Consultorio_Medico_APS.Server.Base;
+using API_Consultorio_Medico_APS.Base;
 
-namespace Consultorio.Server.Base.Impl
+namespace API_Consultorio_Medico_APS.Base.Impl
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {

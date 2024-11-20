@@ -1,7 +1,7 @@
 ﻿using API_Consultorio_Medico_APS.DataBase;
 using API_Consultorio_Medico_APS.DTOs;
 using API_Consultorio_Medico_APS.Models;
-using Consultorio.Server.Base.Impl;
+using API_Consultorio_Medico_APS.Base.Impl;
 using Microsoft.EntityFrameworkCore;
 
 namespace API_Consultorio_Medico_APS.Repositories.Impl

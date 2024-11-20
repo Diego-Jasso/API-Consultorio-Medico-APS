@@ -6,7 +6,7 @@ using FluentValidation.Results;
 
 namespace API_Consultorio_Medico_APS.Services.Impl
 {
-    public class PacienteService(IPacienteRepository repository, IMapper mapper) : IPacienteService
+    public class PacienteService(IPacienteRepository repository,IUsuarioRepository usuarioRepository, IMapper mapper) : IPacienteService
     {
         private readonly IPacienteRepository _repository = repository;
         private readonly IMapper _mapper = mapper;
@@ -24,7 +24,9 @@ namespace API_Consultorio_Medico_APS.Services.Impl
         public PacienteDTO Agregar(PacienteNewDTO dto)
         {
             Paciente Paciente = _mapper.Map<Paciente>(dto);
-            PacienteValidatorService validator = new();
+            ConvertirPass(Paciente, dto.Contraseña);
+            Paciente.Status = true;
+            PacienteValidatorService validator = new(usuarioRepository);
             ValidationResult result = validator.Validate(Paciente);
             if (result.IsValid)
             {
@@ -41,7 +43,7 @@ namespace API_Consultorio_Medico_APS.Services.Impl
         public PacienteDTO Editar(PacienteDTO dto)
         {
             Paciente Paciente = _mapper.Map<Paciente>(dto);
-            PacienteValidatorService validator = new();
+            PacienteValidatorService validator = new(usuarioRepository);
             ValidationResult result = validator.Validate(Paciente);
             if (result.IsValid)
             {
@@ -58,7 +60,7 @@ namespace API_Consultorio_Medico_APS.Services.Impl
         public PacienteDTO Eliminar(int id)
         {
             Paciente Paciente = _repository.ConsultarPorId(id);
-            PacienteValidatorService validator = new();
+            PacienteValidatorService validator = new(usuarioRepository);
             ValidationResult result = validator.Validate(Paciente);
             if (result.IsValid)
             {
@@ -70,6 +72,12 @@ namespace API_Consultorio_Medico_APS.Services.Impl
                 return PacienteDTO.ToError(
                     result.ToString(", "));
             }
+        }
+        private static void ConvertirPass(Paciente paciente, string pass)
+        {
+            var password = Password.Convertir(pass);
+            paciente.passwordHasH = password.passwordHasH;
+            paciente.passwordSalt = password.passwordSalt;
         }
     }
 }

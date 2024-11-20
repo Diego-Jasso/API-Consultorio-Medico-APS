@@ -1,7 +1,7 @@
 ﻿using API_Consultorio_Medico_APS.DataBase;
 using API_Consultorio_Medico_APS.DTOs;
 using API_Consultorio_Medico_APS.Models;
-using Consultorio.Server.Base.Impl;
+using API_Consultorio_Medico_APS.Base.Impl;
 using Microsoft.EntityFrameworkCore;
 
 namespace API_Consultorio_Medico_APS.Repositories.Impl
@@ -15,7 +15,7 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
             return from e in query
                    select new EmpleadoDTO
                    {
-                       ID = e.ID,
+                       Id = e.Id,
                        TipoEmp = e.TipoEmp,
                        Salario = e.Salario,
                        Nombre = e.Nombre,
@@ -26,7 +26,8 @@ namespace API_Consultorio_Medico_APS.Repositories.Impl
                        NumSeguro = e.NumSeguro,
                        Usuario = e.Usuario,
                        Contraseña = e.Contraseña,
-                       Status = e.Status
+                       Status = e.Status,
+                       Correo = e.Correo
                    };
         }
 

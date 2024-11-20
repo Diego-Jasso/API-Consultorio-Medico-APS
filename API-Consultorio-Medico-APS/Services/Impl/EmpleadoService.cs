@@ -6,7 +6,7 @@ using FluentValidation.Results;
 
 namespace API_Consultorio_Medico_APS.Services.Impl
 {
-    public class EmpleadoService(IEmpleadoRepository repository, IMapper mapper) : IEmpleadoService
+    public class EmpleadoService(IEmpleadoRepository repository, IUsuarioRepository usuarioRepository, IMapper mapper) : IEmpleadoService
     {
         private readonly IEmpleadoRepository _repository = repository;
         private readonly IMapper _mapper = mapper;
@@ -30,7 +30,9 @@ namespace API_Consultorio_Medico_APS.Services.Impl
         public EmpleadoDTO Agregar(EmpleadoNewDTO dto)
         {
             Empleado Empleado = _mapper.Map<Empleado>(dto);
-            EmpleadoValidatorService validator = new();
+            ConvertirPass(Empleado, dto.Contraseña);
+            Empleado.Status = true;
+            EmpleadoValidatorService validator = new(usuarioRepository);
             ValidationResult result = validator.Validate(Empleado);
             if (result.IsValid)
             {
@@ -47,7 +49,7 @@ namespace API_Consultorio_Medico_APS.Services.Impl
         public EmpleadoDTO Editar(EmpleadoDTO dto)
         {
             Empleado Empleado = _mapper.Map<Empleado>(dto);
-            EmpleadoValidatorService validator = new();
+            EmpleadoValidatorService validator = new(usuarioRepository);
             ValidationResult result = validator.Validate(Empleado);
             if (result.IsValid)
             {
@@ -65,7 +67,7 @@ namespace API_Consultorio_Medico_APS.Services.Impl
         {
             Empleado empleado = _repository.ConsultarPorId(id);
             empleado.Status = false;
-            EmpleadoValidatorService validator = new();
+            EmpleadoValidatorService validator = new(usuarioRepository);
             ValidationResult result = validator.Validate(empleado);
             if (result.IsValid)
             {
@@ -82,7 +84,7 @@ namespace API_Consultorio_Medico_APS.Services.Impl
         public EmpleadoDTO Eliminar(int id)
         {
             Empleado Empleado = _repository.ConsultarPorId(id);
-            EmpleadoValidatorService validator = new();
+            EmpleadoValidatorService validator = new(usuarioRepository);
             ValidationResult result = validator.Validate(Empleado);
             if (result.IsValid)
             {
@@ -94,6 +96,12 @@ namespace API_Consultorio_Medico_APS.Services.Impl
                 return EmpleadoDTO.ToError(
                     result.ToString(", "));
             }
+        }
+        private static void ConvertirPass(Empleado empleado, string pass)
+        {
+            var password = Password.Convertir(pass);
+            empleado.passwordHasH = password.passwordHasH;
+            empleado.passwordSalt = password.passwordSalt;
         }
     }
 }

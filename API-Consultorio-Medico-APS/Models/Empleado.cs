@@ -5,7 +5,7 @@ namespace API_Consultorio_Medico_APS.Models
     public class Empleado
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string TipoEmp { get; set; } = string.Empty;
         public double Salario { get; set; }
         public string Nombre { get; set; } = string.Empty;
@@ -16,6 +16,9 @@ namespace API_Consultorio_Medico_APS.Models
         public string NumSeguro { get; set; } = string.Empty;
         public string Usuario { get; set; } = string.Empty;
         public string Contraseña { get; set; } = string.Empty;
+        public byte[] passwordHasH { get; set; } = [];
+        public byte[] passwordSalt { get; set; } = [];
         public bool Status { get; set; }
+        public string Correo { get; set; } = string.Empty;
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace API_Consultorio_Medico_APS.Server.Base
+namespace API_Consultorio_Medico_APS.Base
 {
     public interface IBaseRepository<T>
     {

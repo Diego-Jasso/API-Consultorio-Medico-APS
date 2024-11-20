@@ -13,10 +13,11 @@
         public string Usuario { get; set; } = string.Empty;
         public string Contraseña { get; set; } = string.Empty;
         public bool Status { get; set; }
+        public string Correo { get; set; } = string.Empty;
     }
     public class EmpleadoDTO: EmpleadoNewDTO
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public bool Success { get; set; } = true;
         public string Error { get; set; } = string.Empty;
         public static EmpleadoDTO ToError(string error)

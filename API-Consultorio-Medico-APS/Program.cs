@@ -37,6 +37,9 @@ builder.Services.AddScoped<IPacienteService,PacienteService>();
 builder.Services.AddScoped<IPadecimientoService,PadecimientoService>();
 builder.Services.AddScoped<ITipoDeCitaRepository,TipoDeCitaRepository>();
 builder.Services.AddScoped<ITipoDeCitaService,TipoDeCitaService>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<ITokenServices,TokenService>();
 
 //Add controllers.
 builder.Services.AddControllers();
