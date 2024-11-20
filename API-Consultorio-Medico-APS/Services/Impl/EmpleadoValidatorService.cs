@@ -21,7 +21,7 @@ namespace API_Consultorio_Medico_APS.Services.Impl
                 .Cascade(CascadeMode.Stop)
                 .NotEmpty().WithMessage("El correo es requerido");
                 RuleFor(user => user)
-                    .Must(ValidaCorreoRepetido).WithMessage("El nombre de usuario ya existe");
+                    .Must(ValidaCorreoRepetido).WithMessage("El correo ingresado ya pertenece a una cuenta");
             }
 
             public bool ValidaCorreoRepetido(Empleado usuario)

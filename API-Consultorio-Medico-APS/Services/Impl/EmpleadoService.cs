@@ -48,7 +48,10 @@ namespace API_Consultorio_Medico_APS.Services.Impl
 
         public EmpleadoDTO Editar(EmpleadoDTO dto)
         {
-            Empleado Empleado = _mapper.Map<Empleado>(dto);
+            Empleado Empleado = _repository.ConsultarPorId(dto.Id);
+            _mapper.Map(dto, Empleado);
+            Empleado.passwordSalt = Empleado.passwordSalt;
+            Empleado.passwordHasH = Empleado.passwordHasH;
             EmpleadoValidatorService validator = new(usuarioRepository);
             ValidationResult result = validator.Validate(Empleado);
             if (result.IsValid)

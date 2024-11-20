@@ -42,7 +42,10 @@ namespace API_Consultorio_Medico_APS.Services.Impl
 
         public PacienteDTO Editar(PacienteDTO dto)
         {
-            Paciente Paciente = _mapper.Map<Paciente>(dto);
+            Paciente Paciente = _repository.ConsultarPorId(dto.Id);
+            _mapper.Map(dto, Paciente);
+            Paciente.passwordSalt = Paciente.passwordSalt;
+            Paciente.passwordHasH = Paciente.passwordHasH;
             PacienteValidatorService validator = new(usuarioRepository);
             ValidationResult result = validator.Validate(Paciente);
             if (result.IsValid)

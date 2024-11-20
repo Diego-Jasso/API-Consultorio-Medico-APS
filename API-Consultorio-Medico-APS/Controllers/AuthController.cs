@@ -48,7 +48,7 @@ namespace API_Consultorio_Medico_APS.Controllers
              usuarioDto = new AuthResponseTrueDTO
             {
                 status = "success",
-                message = "log in success",
+                message = "Login correcto",
                 ok = true,
                 id = usuario.Id,
                 usname = usuario.User,
@@ -104,7 +104,7 @@ namespace API_Consultorio_Medico_APS.Controllers
             return new AuthResponseTrueDTO
             {
                 status = "success",
-                message = "log in success",
+                message = "Token renovado",
                 ok = true,
                 id = usuario.Id,
                 usname = nombreUsuario,
@@ -128,7 +128,7 @@ namespace API_Consultorio_Medico_APS.Controllers
                 return new AuthResponseTrueDTO
                 {
                     status = "success",
-                    message = "log in success",
+                    message = "Cuenta creada con exito",
                     ok = true,
                     id = result.Id,
                     usname = result.Usuario,
